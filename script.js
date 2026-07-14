@@ -4,7 +4,7 @@
   opcionais e adicionais. Para foto real, substitua o emoji por uma URL em "image".
 */
 const CONFIG = {
-  whatsappLoja: '5511999999999', // DDI + DDD + número, sem símbolos
+  whatsappLoja: '5585988792889', // DDI + DDD + número, sem símbolos
   sizes: [
     { name: 'Pequeno', label: '300 ml', extra: 0 },
     { name: 'Médio', label: '500 ml', extra: 4 },
