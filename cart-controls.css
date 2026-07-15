@@ -1,0 +1,91 @@
+/* Estilos para controles de quantidade no carrinho */
+
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.qty-btn {
+  border: 1.5px solid #e8e4f2;
+  background: #faf8ff;
+  color: #6238d6;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  font: 600 16px "DM Sans", sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.qty-btn:hover {
+  background: #f0ecff;
+  border-color: #6238d6;
+  transform: scale(1.05);
+}
+
+.qty-btn:active {
+  transform: scale(0.95);
+}
+
+.minus-btn,
+.plus-btn {
+  min-width: 32px;
+  min-height: 32px;
+}
+
+.qty-display {
+  min-width: 24px;
+  text-align: center;
+  font: 600 14px Outfit, sans-serif;
+  color: #22144f;
+  padding: 0 4px;
+}
+
+.edit-btn {
+  border-color: #e8e4f2;
+  background: #faf8ff;
+  color: #6238d6;
+  font-size: 14px;
+}
+
+.edit-btn:hover {
+  background: #f0ecff;
+  border-color: #6238d6;
+}
+
+.remove-btn {
+  border-color: #ffebe6;
+  background: #fff5f0;
+  color: #d95644;
+  font-size: 14px;
+  margin-left: auto;
+}
+
+.remove-btn:hover {
+  background: #ffe8e0;
+  border-color: #d95644;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  .qty-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .qty-display {
+    min-width: 20px;
+    font-size: 12px;
+  }
+
+  .quantity {
+    gap: 6px;
+  }
+}
