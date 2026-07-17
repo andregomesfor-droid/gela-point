@@ -1,4 +1,46 @@
-// Variáveis Globais de Controle do Carrinho
+const CONFIG = {
+  whatsappLoja: "5585999999999", // Coloque seu número de WhatsApp com DDD aqui
+  products: [
+    {
+      id: "acai-tradicional",
+      category: "acai",
+      name: "Açaí Tradicional",
+      description: "Açaí cremoso, batido na hora com muito sabor.",
+      basePrice: 12.90,
+      sizes: [
+        { name: "300ml", extra: 0 },
+        { name: "500ml", extra: 4.00 },
+        { name: "700ml", extra: 8.00 }
+      ],
+      optionals: ["Leite condensado", "Granola", "Leite em pó"],
+      additionals: [
+        { name: "Nutella", extra: 3.00 },
+        { name: "Morango", extra: 2.00 },
+        { name: "M&Ms", extra: 1.50 }
+      ]
+    },
+    {
+      id: "sorvete-artesanal",
+      category: "icecream",
+      name: "Sorvete Artesanal",
+      description: "Sorvete super cremoso de vários sabores.",
+      basePrice: 10.90,
+      sizes: [
+        { name: "1 Bola", extra: 0 },
+        { name: "2 Bolas", extra: 3.50 }
+      ],
+      flavors: ["Morango", "Chocolate", "Baunilha", "Flocos"],
+      optionals: ["Calda de chocolate", "Granulado"],
+      additionals: [
+        { name: "Cereja", extra: 2.50 }
+      ]
+    }
+  ]
+};
+
+// ==========================================
+// CÓDIGO DO SISTEMA (MANTIDO DO SEU ORIGINAl)
+// ==========================================
 let cart = [];
 let activeProduct = null;
 let editingCartIndex = null;
@@ -82,25 +124,20 @@ function openProduct(id, cartIndex = null) {
   $('#productModal').showModal();
 
   if (cartIndex !== null) {
-    // Se estiver editando, preenche as opções selecionadas anteriormente
     const item = cart[cartIndex];
-    // Marca o tamanho
     const sizeInput = $(`input[name="size"][value="${product.sizes.indexOf(item.size)}"]`);
     if (sizeInput) sizeInput.checked = true;
 
-    // Marca o sabor (se aplicável)
     if (item.flavor) {
       const flavorInput = $(`input[name="flavor"][value="${product.flavors.indexOf(item.flavor)}"]`);
       if (flavorInput) flavorInput.checked = true;
     }
 
-    // Marca os opcionais
     (item.optionals || []).forEach(opt => {
       const optInput = $(`input[name="optional"][value="${product.optionals.indexOf(opt)}"]`);
       if (optInput) optInput.checked = true;
     });
 
-    // Marca os adicionais
     (item.additionals || []).forEach(add => {
       const addInput = $(`input[name="additional"][value="${product.additionals.indexOf(add)}"]`);
       if (addInput) addInput.checked = true;
@@ -137,11 +174,9 @@ function addConfiguredItem() {
   };
 
   if (editingCartIndex !== null) {
-    // Atualiza o item existente
     cart[editingCartIndex] = configuredItem;
     editingCartIndex = null;
   } else {
-    // Adiciona um novo item
     cart.push(configuredItem);
   }
 
