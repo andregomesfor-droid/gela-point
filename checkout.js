@@ -16,6 +16,11 @@ function atualizarCheckout() {
   document.querySelector('#checkoutTotal').textContent = formatMoney(subtotalAtual() + (entrega ? TAXA_ENTREGA : 0));
 }
 document.querySelectorAll('input[name="deliveryType"]').forEach(input => input.addEventListener('change', atualizarCheckout));
+document.querySelector('#editOrder').addEventListener('click', () => {
+  document.querySelector('#checkoutModal').close();
+  document.querySelector('#cartDrawer').classList.add('open');
+  document.querySelector('#overlay').classList.add('show');
+});
 
 /* Captura o envio antes da função original para acrescentar taxa/retirada. */
 checkout.addEventListener('submit', event => {
@@ -25,6 +30,7 @@ checkout.addEventListener('submit', event => {
   const endereco = document.querySelector('#address').value.trim();
   const complemento = document.querySelector('#complement').value.trim();
   const subtotal = subtotalAtual();
+  const pagamento = document.querySelector('input[name="payment"]:checked').value;
   const total = subtotal + (entrega ? TAXA_ENTREGA : 0);
   const linhas = ['*NOVO PEDIDO - GELA POINT*', ''];
   cart.forEach((item, index) => {
@@ -36,7 +42,7 @@ checkout.addEventListener('submit', event => {
   });
   linhas.push('Subtotal: ' + formatMoney(subtotal));
   if (entrega) linhas.push('Taxa de entrega: ' + formatMoney(TAXA_ENTREGA));
-  linhas.push('*TOTAL: ' + formatMoney(total) + '*', '', entrega ? '*Entrega*' : '*Retirada no local*');
+  linhas.push('*TOTAL: ' + formatMoney(total) + '*', '', 'Pagamento: ' + pagamento, '', entrega ? '*Entrega*' : '*Retirada no local*');
   if (entrega) {
     linhas.push('Endereço: ' + endereco);
     if (complemento) linhas.push('Complemento: ' + complemento);
